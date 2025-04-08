@@ -1,0 +1,217 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 16,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default Config",
+      "hidden": true,
+      "description": "Default build (won't compile without enabling one of `USE_*_SERVICE`)",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Debug"
+        },
+        "EP_DOWNLOAD_DIR": {
+          "type": "PATH",
+          "value": "${sourceDir}/build/dl"
+        }
+      }
+    },  
+    {
+      "name": "linux",
+      "inherits": "default",
+      "displayName": "Linux",
+      "description": "Default build for Linux (uses netlink)",
+      "cacheVariables": {
+        "BUILD_MNL_LIB": true,
+        "BUILD_NETLINK_LIB": true,
+        "USE_NETLINK_SERVICE": true,
+        "USE_UCI_SERVICE": false,
+        "USE_GENERIC_IP_SERVICE": false,
+        "USE_RADIUS_SERVICE": true,
+        "BUILD_HOSTAPD": true,
+        "BUILD_HOSTAPD_EAP_LIB": true,
+        "USE_CRYPTO_SERVICE": false,
+        "BUILD_OPENSSL_LIB": false,
+        "SANITIZE_ADDRESS": {
+          "type": "BOOL",
+          "value": true
+        },
+        "SANITIZE_UNDEFINED_BEHAVIOR": true
+      }
+    },
+    {
+      "name": "linux/header",
+      "inherits": "linux",
+      "displayName": "Linux Header",
+      "description": "Linux header (with header middlewares)",
+      "cacheVariables": {
+        "USE_CLEANER_MIDDLEWARE": false,
+        "USE_HEADER_MIDDLEWARE": true,
+        "USE_PCAP_MIDDLEWARE": false,
+        "USE_TAP_MIDDLEWARE": false,
+        "USE_PROTOBUF_MIDDLEWARE": false
+      }
+    },
+    {
+      "name": "recap",
+      "inherits": "default",
+      "displayName": "recap tool",
+      "description": "recap tool",
+      "cacheVariables": {
+        "BUILD_MNL_LIB": false,
+        "BUILD_NETLINK_LIB": false,
+        "USE_NETLINK_SERVICE": false,
+        "USE_UCI_SERVICE": false,
+        "USE_GENERIC_IP_SERVICE": true,
+        "USE_RADIUS_SERVICE": false,
+        "BUILD_HOSTAPD": false,
+        "USE_CRYPTO_SERVICE": false,
+        "BUILD_OPENSSL_LIB": false,
+        "USE_HEADER_MIDDLEWARE": true,
+        "USE_CAPTURE_SERVICE": true,
+        "BUILD_SQLITE_LIB": true,
+        "BUILD_UUID_LIB": true,
+        "BUILD_PCAP_LIB": true
+      }
+    },
+    {
+      "name": "linux-with-crypt",
+      "inherits": "linux",
+      "displayName": "Linux (with crypto service)",
+      "description": "Build for Linux using encrypted crypto service",
+      "cacheVariables": {
+        "USE_CRYPTO_SERVICE": true,
+        "BUILD_OPENSSL_LIB": true
+      }
+    },
+    {
+      "name": "linux-with-example-middlewares",
+      "inherits": "linux",
+      "displayName": "Linux (with example middlewares)",
+      "description": "Build for Linux all example capture middlewares",
+      "cacheVariables": {
+        "USE_CLEANER_MIDDLEWARE": true,
+        "USE_HEADER_MIDDLEWARE": true,
+        "USE_PCAP_MIDDLEWARE": true,
+        "USE_TAP_MIDDLEWARE": true,
+        "USE_PROTOBUF_MIDDLEWARE": true
+      }
+    },
+    {
+      "name": "linux-with-tap",
+      "inherits": "linux",
+      "displayName": "Linux (with tap middleware)",
+      "description": "Linux (with tap middleware)",
+      "cacheVariables": {
+        "USE_CLEANER_MIDDLEWARE": false,
+        "USE_HEADER_MIDDLEWARE": false,
+        "USE_PCAP_MIDDLEWARE": false,
+        "USE_TAP_MIDDLEWARE": true,
+        "USE_PROTOBUF_MIDDLEWARE": false
+      }
+    },
+    {
+      "name": "linux-with-protobuf",
+      "inherits": "linux",
+      "displayName": "Linux (with protobuf middleware)",
+      "description": "Linux (with protobuf middleware)",
+      "cacheVariables": {
+        "BUILD_PROTOBUFC_LIB": true,
+        "USE_CLEANER_MIDDLEWARE": false,
+        "USE_HEADER_MIDDLEWARE": false,
+        "USE_PCAP_MIDDLEWARE": false,
+        "USE_TAP_MIDDLEWARE": false,
+        "USE_PROTOBUF_MIDDLEWARE": true
+      }
+    },
+    {
+      "name": "clang",
+      "inherits": "linux",
+      "displayName": "Clang",
+      "toolchainFile": "${sourceDir}/CMakeModules/CMakeToolchains/clang.cmake"
+    }    
+    
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default"
+    },
+    {
+      "name": "linux",
+      "configurePreset": "linux"
+    },
+    {
+      "name": "recap",
+      "configurePreset": "recap"
+    },
+   
+    {
+      "name": "linux/header",
+      "configurePreset": "linux/header"
+    },
+    {
+      "name": "linux-with-crypt",
+      "configurePreset": "linux-with-crypt"
+    },
+    {
+      "name": "linux-with-example-middlewares",
+      "configurePreset": "linux-with-example-middlewares"
+    },
+    {
+      "name": "linux-with-tap",
+      "configurePreset": "linux-with-tap"
+    },
+    {
+      "name": "linux-with-protobuf",
+      "configurePreset": "linux-with-protobuf"
+    },
+    {
+      "name": "clang",
+      "configurePreset": "clang"
+    }    
+    
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default"
+    },
+    {
+      "name": "linux",
+      "configurePreset": "linux"
+    },
+    {
+      "name": "linux-with-example-middlewares",
+      "configurePreset": "linux-with-example-middlewares"
+    },
+    {
+      "name": "linux-with-tap",
+      "configurePreset": "linux-with-tap"
+    },
+    {
+      "name": "linux-with-protobuf",
+      "configurePreset": "linux-with-protobuf"
+    },
+    {
+      "name": "recap",
+      "configurePreset": "recap"
+    },
+    {
+      "name": "linux-with-crypt",
+      "configurePreset": "linux-with-crypt"
+    }, 
+     
+    {
+      "name": "clang",
+      "configurePreset": "clang"
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 16,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default Config",
+      "hidden": true,
+      "description": "Default build (won't compile without enabling one of `USE_*_SERVICE`)",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Debug"
+        },
+        "EP_DOWNLOAD_DIR": {
+          "type": "PATH",
+          "value": "${sourceDir}/build/dl"
+        }
+      }
+    },  
+    {
+      "name": "linux",
+      "inherits": "default",
+      "displayName": "Linux",
+      "description": "Default build for Linux (uses netlink)",
+      "cacheVariables": {
+        "BUILD_MNL_LIB": true,
+        "BUILD_NETLINK_LIB": true,
+        "USE_NETLINK_SERVICE": true,
+        "USE_UCI_SERVICE": false,
+        "USE_GENERIC_IP_SERVICE": false,
+        "USE_RADIUS_SERVICE": true,
+        "BUILD_HOSTAPD": true,
+        "BUILD_HOSTAPD_EAP_LIB": true,
+        "USE_CRYPTO_SERVICE": false,
+        "BUILD_OPENSSL_LIB": false,
+        "SANITIZE_ADDRESS": {
+          "type": "BOOL",
+          "value": true
+        },
+        "SANITIZE_UNDEFINED_BEHAVIOR": true
+      }
+    },
+    {
+      "name": "linux/header",
+      "inherits": "linux",
+      "displayName": "Linux Header",
+      "description": "Linux header (with header middlewares)",
+      "cacheVariables": {
+        "USE_CLEANER_MIDDLEWARE": false,
+        "USE_HEADER_MIDDLEWARE": true,
+        "USE_PCAP_MIDDLEWARE": false,
+        "USE_TAP_MIDDLEWARE": false,
+        "USE_PROTOBUF_MIDDLEWARE": false
+      }
+    }
+    {
+      "name": "linux-with-example-middlewares",
+      "inherits": "linux",
+      "displayName": "Linux (with example middlewares)",
+      "description": "Build for Linux all example capture middlewares",
+      "cacheVariables": {
+        "USE_CLEANER_MIDDLEWARE": true,
+        "USE_HEADER_MIDDLEWARE": true,
+        "USE_PCAP_MIDDLEWARE": true,
+        "USE_TAP_MIDDLEWARE": true,
+        "USE_PROTOBUF_MIDDLEWARE": true
+      }
+    },
+    {
+      "name": "linux-with-protobuf",
+      "inherits": "linux",
+      "displayName": "Linux (with protobuf middleware)",
+      "description": "Linux (with protobuf middleware)",
+      "cacheVariables": {
+        "BUILD_PROTOBUFC_LIB": true,
+        "USE_CLEANER_MIDDLEWARE": false,
+        "USE_HEADER_MIDDLEWARE": false,
+        "USE_PCAP_MIDDLEWARE": false,
+        "USE_TAP_MIDDLEWARE": false,
+        "USE_PROTOBUF_MIDDLEWARE": true
+      }
+    },
+    {
+      "name": "clang",
+      "inherits": "linux",
+      "displayName": "Clang",
+      "toolchainFile": "${sourceDir}/CMakeModules/CMakeToolchains/clang.cmake"
+    },
+    {
+      "name": "openwrt-sdk",
+      "inherits": "openwrt",
+      "hidden": true,
+      "displayName": "CMake config for cross-compiling OpenWRT with the SDK",
+      "cacheVariables": {
+        "BUILD_TESTING": false,
+        "SANITIZE_ADDRESS": false,
+        "SANITIZE_UNDEFINED_BEHAVIOR": false
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "openwrt-19.07.10/mvebu/cortexa9-with-header",
+      "inherits": "openwrt-with-header",
+      "displayName": "OpenWRT 19.07.10 mvebu/cortexa9 (with header middleware)",
+      "description": "Cross-compile for OpenWRT 19.07.10 mvebu/cortexa9 (with header middleware)",
+      "toolchainFile": "${sourceDir}/CMakeModules/CMakeToolchains/openwrt-19.07.10-mvebu-cortexa9.cmake",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "openwrt-19.07.10/mvebu/cortexa9",
+      "inherits": "openwrt-sdk",
+      "displayName": "OpenWRT 19.07.10 mvebu/cortexa9",
+      "description": "Cross-compile for OpenWRT 19.07.10 mvebu/cortexa9 (aka Turris Omnia)",
+      "toolchainFile": "${sourceDir}/CMakeModules/CMakeToolchains/openwrt-19.07.10-mvebu-cortexa9.cmake"
+    },
+    {
+      "name": "openwrt-19.07.10/ath79/generic",
+      "inherits": "openwrt-sdk",
+      "displayName": "OpenWRT 19.07.10 ath79/generic",
+      "description": "Cross-compile for OpenWRT 19.07.10 ath79/generic",
+      "toolchainFile": "${sourceDir}/CMakeModules/CMakeToolchains/openwrt-19.07.10-ath79-generic.cmake"
+    },
+    {
+      "name": "openwrt-21.02.3/ath79/generic",
+      "inherits": "openwrt-sdk",
+      "displayName": "OpenWRT 21.02.3 ath79/generic",
+      "description": "Cross-compile for OpenWRT 21.02.3 ath79/generic",
+      "toolchainFile": "${sourceDir}/CMakeModules/CMakeToolchains/openwrt-21.02.3-ath79-generic.cmake"
+    },
+    {
+      "name": "openwrt-21.02.1/bcm27xx/bcm2710",
+      "inherits": "openwrt-sdk",
+      "displayName": "OpenWRT 21.02.1 bcm27xx/bcm2710",
+      "description": "Cross-compile for OpenWRT 21.02.1 bcm27xx/bcm2710 (aka Raspberry Pi 3)",
+      "toolchainFile": "${sourceDir}/CMakeModules/CMakeToolchains/openwrt-21.02.1-bcm27xx-bcm2710.cmake"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default"
+    },
+    {
+      "name": "linux",
+      "configurePreset": "linux"
+    },
+    {
+      "name": "recap",
+      "configurePreset": "recap"
+    },
+    {
+      "name": "freebsd",
+      "configurePreset": "freebsd"
+    },
+    {
+      "name": "linux/header",
+      "configurePreset": "linux/header"
+    },
+    {
+      "name": "linux-with-crypt",
+      "configurePreset": "linux-with-crypt"
+    },
+    {
+      "name": "linux-with-example-middlewares",
+      "configurePreset": "linux-with-example-middlewares"
+    },
+    {
+      "name": "linux-with-tap",
+      "configurePreset": "linux-with-tap"
+    },
+    {
+      "name": "linux-with-protobuf",
+      "configurePreset": "linux-with-protobuf"
+    },
+    {
+      "name": "clang",
+      "configurePreset": "clang"
+    },
+    {
+      "name": "openwrt",
+      "configurePreset": "openwrt"
+    },
+    {
+      "name": "openwrt-with-header",
+      "configurePreset": "openwrt-with-header"
+    },
+    {
+      "name": "openwrt-19.07.10/mvebu/cortexa9",
+      "configurePreset": "openwrt-19.07.10/mvebu/cortexa9"
+    },
+    {
+      "name": "openwrt-19.07.10/mvebu/cortexa9-with-header",
+      "configurePreset": "openwrt-19.07.10/mvebu/cortexa9-with-header"
+    },
+    {
+      "name": "openwrt-19.07.10/ath79/generic",
+      "configurePreset": "openwrt-19.07.10/ath79/generic"
+    },
+    {
+      "name": "openwrt-21.02.3/ath79/generic",
+      "configurePreset": "openwrt-21.02.3/ath79/generic"
+    },
+    {
+      "name": "openwrt-21.02.1/bcm27xx/bcm2710",
+      "configurePreset": "openwrt-21.02.1/bcm27xx/bcm2710"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default"
+    },
+    {
+      "name": "linux",
+      "configurePreset": "linux"
+    },
+    {
+      "name": "linux-with-example-middlewares",
+      "configurePreset": "linux-with-example-middlewares"
+    },
+    {
+      "name": "linux-with-tap",
+      "configurePreset": "linux-with-tap"
+    },
+    {
+      "name": "linux-with-protobuf",
+      "configurePreset": "linux-with-protobuf"
+    },
+    {
+      "name": "recap",
+      "configurePreset": "recap"
+    },
+    {
+      "name": "linux-with-crypt",
+      "configurePreset": "linux-with-crypt"
+    },
+    {
+      "name": "freebsd",
+      "configurePreset": "freebsd",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "FreeBSD"
+      }
+    },
+    {
+      "name": "openwrt",
+      "configurePreset": "openwrt",
+      "environment": {
+        "LD_LIBRARY_PATH": "${sourceDir}/build/${presetName}/lib/ubox/lib"
+      }
+    },
+    {
+      "name": "openwrt-with-header",
+      "configurePreset": "openwrt-with-header",
+      "inherits": "openwrt"
+    },
+    {
+      "name": "clang",
+      "configurePreset": "clang"
+    }
+  ]
+}
