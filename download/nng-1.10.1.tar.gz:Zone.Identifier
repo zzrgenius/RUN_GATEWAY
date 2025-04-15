@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://github.com/nanomsg/nng/releases/tag/v1.10.1
+HostUrl=https://codeload.github.com/nanomsg/nng/tar.gz/refs/tags/v1.10.1
