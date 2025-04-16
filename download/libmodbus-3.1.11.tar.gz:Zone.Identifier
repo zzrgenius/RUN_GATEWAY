@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://github.com/stephane/libmodbus/releases/tag/v3.1.11
+HostUrl=https://objects.githubusercontent.com/github-production-release-asset-2e65be/481977/5e83fe76-c39d-445d-bf7b-21ccc36e378d?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20250415%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250415T092625Z&X-Amz-Expires=300&X-Amz-Signature=4928bd11f5956b742b1f8ddbf17cb504f7df55d1fe390ce268969ab47324dced&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dlibmodbus-3.1.11.tar.gz&response-content-type=application%2Foctet-stream

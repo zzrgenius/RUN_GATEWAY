@@ -12,9 +12,9 @@ set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
 
 # 指定自定义路径的MyLib
 set(MYLIB_ROOT ${PROJECT_SOURCE_DIR}/libs)
-include_directories(${MYLIB_ROOT}/sqlite3/include)
+include_directories(${MYLIB_ROOT}/include)
 # find_library(MYLIB_LIB NAMES sqlite3 PATHS ${MYLIB_ROOT}/sqlite3/lib)
-link_directories("${CMAKE_CURRENT_LIST_DIR}/libs/sqlite3/lib/")
+link_directories("${CMAKE_CURRENT_LIST_DIR}/libs/lib/")
 
 # include(FetchContent)
 # FetchContent_Declare(sqlite3 GIT_REPOSITORY https://github.com/sjinks/sqlite3-cmake GIT_TAG v3.49.1 SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party/sqlite3-cmake)

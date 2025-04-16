@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://github.com/libuv/libuv/releases/tag/v1.50.0
+HostUrl=https://codeload.github.com/libuv/libuv/tar.gz/refs/tags/v1.50.0

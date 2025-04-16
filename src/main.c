@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/select.h>
+#include "libmodbus/libmodbus.h"
 // #include "linenoise.h"
 #include "sqlite3.h"
 #define DATABASE_NAME                 "MyDBDemo.db"
