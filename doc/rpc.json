@@ -1,0 +1,28 @@
+{
+	"GlobalConfiguration": {
+		"GlobalFixThreads":5,
+		"GlobalDynThreads":8,
+		"GlobalMaxWorkQueue":300,
+		"GlobalCycleTimerPeriod":"15s",
+		"GlobalConnectTimeout":"80ms",
+		"GlobalResponseTimeout":"50ms",
+	},
+	"ProcessConfiguration": [
+		{"service": {
+			"FixThreads":2,
+			"DynThreads":3,
+			"MaxWorkQueue":50,
+			"ConnectTimeout":"50ms",
+			"ResponseTimeout":"30ms",
+			"ListenPort":0,
+			"IPAddress":"/tmp/s_media_service",
+			"Deployment":["hello", "Key"]
+		}},
+		{"app": {
+			"ListenPort":8989,
+			"IPAddress":"127.0.0.1",
+			"Deployment":["logic", "IO"]
+		}}
+	]
+}
+

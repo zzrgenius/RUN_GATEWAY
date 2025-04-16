@@ -7,8 +7,19 @@ LANGUAGES C
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE "Debug")
-set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb")
-set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
+set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -Wextra -g -ggdb")
+set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O0 -Wall")
+if(NOT CMAKE_SYSTEM_NAME)
+  set(CMAKE_SYSTEM_NAME "Linux")
+endif()
+if(NOT DISABLE_ASAN)
+  set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -fsanitize=address")
+  set(CMAKE_CXX_FLAGS_DEBUG "-Wall -g -fsanitize=address")
+endif()
+
+add_custom_target(app-version
+  COMMAND ${CMAKE_COMMAND} -P
+          ${CMAKE_CURRENT_SOURCE_DIR}/cmake/app-version.cmake)
 
 # 指定自定义路径的MyLib
 set(MYLIB_ROOT ${PROJECT_SOURCE_DIR}/libs)
@@ -26,8 +37,10 @@ link_directories("${CMAKE_CURRENT_LIST_DIR}/libs/lib/")
 
 include_directories(./)
 include_directories(./inc)
-
-set(APP_SRCS src/main.c)
+include_directories(third_party/linenoise)
+# set(APP_SRCS src/main.c)
+set(APP_SRCS src/line_test.c)
+list(APPEND APP_SRCS third_party/linenoise/linenoise.c)
 # add_library(linenoise SHARED third_party/linenoise/linenoise.h third_party/linenoise/linenoise.c)
 add_executable(hello_world ${APP_SRCS} )
 
@@ -45,4 +58,6 @@ add_executable(hello_world ${APP_SRCS} )
 # ) 
  
 
-target_link_libraries(hello_world pthread m sqlite3)
+target_link_libraries(hello_world pthread m uv)
+# target_link_libraries(hello_world pthread m sqlite3)
+
