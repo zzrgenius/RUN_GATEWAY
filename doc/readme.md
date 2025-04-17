@@ -4,4 +4,9 @@
 ## ref github 
     nng
     nanomq
-    
+## sqlite3 cmake
+    https://github.com/Illuxel/sqlite3-cmake
+    https://github.com/sjinks/sqlite3-cmake
+    https://github.com/undisputed-seraphim/sqlite3-cmake
+    https://github.com/mattsta/sqlite3-cmake
+    https://github.com/D31m05z/sqlite3-cmake.git
