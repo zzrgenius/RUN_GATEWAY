@@ -10,3 +10,10 @@
     https://github.com/undisputed-seraphim/sqlite3-cmake
     https://github.com/mattsta/sqlite3-cmake
     https://github.com/D31m05z/sqlite3-cmake.git
+    https://github.com/tek256/SQLite3.cmake
+    https://github.com/blindley/sqlite3-cmake
+    https://github.com/johnpatek/sqlite3-cmake
+    https://github.com/aimotive-legacy/sqlite3-cmake
+    https://github.com/4n86rakam1/sqlite-cmake-demo
+    https://github.com/jelin-sh/sqlite3-amalgamation-cmake
+    https://github.com/meysamkhazaee/sqlite3_c_cmake
