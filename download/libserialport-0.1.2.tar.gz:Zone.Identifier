@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://github.com/sigrokproject/libserialport/releases/tag/libserialport-0.1.2
+HostUrl=https://objects.githubusercontent.com/github-production-release-asset-2e65be/82976325/7c4289e7-1392-4926-9045-cc1a218e0860?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20250417%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250417T071241Z&X-Amz-Expires=300&X-Amz-Signature=8c6cfdd956ee95b6dd2b258a4a706e46b922a8b235d637b5c868c848385844d3&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dlibserialport-0.1.2.tar.gz&response-content-type=application%2Foctet-stream

@@ -17,3 +17,5 @@
     https://github.com/4n86rakam1/sqlite-cmake-demo
     https://github.com/jelin-sh/sqlite3-amalgamation-cmake
     https://github.com/meysamkhazaee/sqlite3_c_cmake
+## sqlite3 example
+    https://blog.csdn.net/qq_39048131/article/details/129172318
