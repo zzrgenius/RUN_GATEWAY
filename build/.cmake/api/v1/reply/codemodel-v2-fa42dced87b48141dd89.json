@@ -28,7 +28,7 @@
 					[
 						0
 					],
-					"name" : "hello_world",
+					"name" : "myproject",
 					"targetIndexes" : 
 					[
 						0,
@@ -47,9 +47,9 @@
 				},
 				{
 					"directoryIndex" : 0,
-					"id" : "hello_world::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-hello_world-Debug-b540c54eb60f87a403ea.json",
-					"name" : "hello_world",
+					"id" : "myproject::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-myproject-Debug-9e645355acec6115a7e0.json",
+					"name" : "myproject",
 					"projectIndex" : 0
 				}
 			]

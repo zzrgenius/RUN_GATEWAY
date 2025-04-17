@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16.0)
 
-project(hello_world         
+project(myproject         
 VERSION 0.1.0
 LANGUAGES C
 )
@@ -34,15 +34,19 @@ link_directories("${CMAKE_CURRENT_LIST_DIR}/libs/lib/")
  ##aux_source_directory(${TINY_ROOT}/core CORE_SRCS)
 
 # file(MAKE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/sqlite-build)
-
+# 配置使用Valgrind的测试目标
+add_test(NAME TestWithValgrind COMMAND valgrind --leak-check=full $<TARGET_FILE:myproject>)
 include_directories(./)
-include_directories(./inc)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
 include_directories(third_party/linenoise)
-# set(APP_SRCS src/main.c)
-set(APP_SRCS src/line_test.c)
-list(APPEND APP_SRCS third_party/linenoise/linenoise.c)
+
+  # set(APP_SRCS src/main.c)
+set(SOURCES src/test/line_test.c)
+list(APPEND SOURCES third_party/linenoise/linenoise.c)
 # add_library(linenoise SHARED third_party/linenoise/linenoise.h third_party/linenoise/linenoise.c)
-add_executable(hello_world ${APP_SRCS} )
+ # 添加可执行文件目标
+add_executable(${PROJECT_NAME} ${SOURCES} )
+target_link_libraries(${PROJECT_NAME} pthread m uv)  # Link libraries to the executable
 
 # ExternalProject_Add(sqlite
 # 		SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/sqlite
@@ -58,6 +62,5 @@ add_executable(hello_world ${APP_SRCS} )
 # ) 
  
 
-target_link_libraries(hello_world pthread m uv)
-# target_link_libraries(hello_world pthread m sqlite3)
+ # target_link_libraries(myproject pthread m sqlite3)
 

@@ -707,7 +707,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "hello_world"
+			"value" : "myproject"
 		},
 		{
 			"name" : "CMAKE_PROJECT_VERSION",
@@ -1075,6 +1075,42 @@
 		},
 		{
 			"name" : "hello_world_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/zirun/work/RUN_GATEWAY"
+		},
+		{
+			"name" : "myproject_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/zirun/work/RUN_GATEWAY/build"
+		},
+		{
+			"name" : "myproject_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "myproject_SOURCE_DIR",
 			"properties" : 
 			[
 				{
